@@ -1,0 +1,12 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local pixelLabel = Instance.new("TextLabel")
+pixelLabel.Parent = screenGui
+pixelLabel.Size = UDim2.new(0, 200, 0, 50)
+pixelLabel.Position = UDim2.new(0.5, -100, 0.5, -25)
+pixelLabel.Text = "Pixel Font"
+pixelLabel.TextSize = 16  -- Adjust size to create the pixelated effect
+pixelLabel.Font = Enum.Font.Gotham -- A built-in font that resembles pixel style when small
+pixelLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- White color for text
+pixelLabel.BackgroundTransparency = 1 -- Remove background
