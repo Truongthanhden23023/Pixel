@@ -1,12 +1,15 @@
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local function convertToPixelFont(parent)
+    for _, obj in ipairs(parent:GetDescendants()) do
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            obj.Font = Enum.Font.Arcade -- Hoặc PressStart2P
+            obj.TextSize = math.max(10, obj.TextSize) -- Đảm bảo chữ không quá nhỏ
+        end
+    end
+end
 
-local pixelLabel = Instance.new("TextLabel")
-pixelLabel.Parent = screenGui
-pixelLabel.Size = UDim2.new(0, 200, 0, 50)
-pixelLabel.Position = UDim2.new(0.5, -100, 0.5, -25)
-pixelLabel.Text = "Pixel Font"
-pixelLabel.TextSize = 16  -- Adjust size to create the pixelated effect
-pixelLabel.Font = Enum.Font.Gotham -- A built-in font that resembles pixel style when small
-pixelLabel.TextColor3 = Color3.fromRGB(255, 255, 255) -- White color for text
-pixelLabel.BackgroundTransparency = 1 -- Remove background
+convertToPixelFont(game.Players.LocalPlayer:WaitForChild("PlayerGui"))
+
+-- Tự động áp dụng khi có UI mới xuất hiện
+game.Players.LocalPlayer:WaitForChild("PlayerGui").ChildAdded:Connect(function(child)
+    convertToPixelFont(child)
+end)
